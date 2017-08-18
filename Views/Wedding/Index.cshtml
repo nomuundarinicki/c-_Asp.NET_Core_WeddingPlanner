@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-sm-10">
+        <h1>Welcome to the Wedding Planner</h1>
+    </div>
+    <div class="col-sm-2">
+        <a href="/logout">Log Out</a>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>Wedding</th>
+        <th>Date</th>
+        <th>Guest</th>
+        <th>Action</th>
+    </tr>
+@foreach(var wedding in @ViewBag.weddings){
+    <tr>
+        <td><a href="weddings/@wedding.WeddingId">@wedding.Wedder1 and @wedding.Wedder2</a></td>
+        <td>@wedding.Date.ToString("MM/dd/yyyy")</td>
+        <td>@wedding.Guest.Count</td>
+        @{bool attending = false;}
+        @if(@wedding.UserId == @ViewBag.UserId){
+            <td><a href="delete/@wedding.WeddingId">Delete</a></td>
+        }
+        @foreach(var guest in @wedding.Guest){
+            @if(@guest.UserId == @ViewBag.UserId)
+            {
+                attending = true;
+            }
+        }
+        @if(attending){
+            <td><a href="Unrsvp/@wedding.WeddingId">Un-RSVP</a></td>
+        } else {
+            <td><a href="rsvp/@wedding.WeddingId">RSVP</a></td>
+        }
+        
+    </tr>
+}
+</table>
+<a href="/addwedding"><button>Add a Wedding</button></a>

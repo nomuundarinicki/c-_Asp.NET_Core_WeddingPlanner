@@ -1,0 +1,23 @@
+</script>
+<div class="row">
+    <div class="col-sm-10">
+        <h1>@ViewBag.wedding.Wedder1 and @ViewBag.wedding.Wedder2's Wedding</h1>
+    </div>
+    <div class="col-sm-2">
+        <a href="/list">Dashboard</a>
+        <a href="/logout">Log Out</a>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Date: @ViewBag.wedding.Date.ToString("MM/dd/yyyy")</h3>
+            <h3>Guests:</h3>
+            @foreach (var guest in @ViewBag.wedding.Guest){
+            <h5>@guest.User.FirstName @guest.User.LastName</h5>
+            }
+        </div>
+        <div class="col-sm-6">
+            <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?key=AIzaSyCE5rc8HduPNe5ZN5B6yLPQYMPmZ1jYTcw
+    &q=@ViewBag.wedding.Address.Replace(" ", "+")" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
